@@ -141,7 +141,130 @@
 
 
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <section id="luxury-overview-master" class="relative bg-white overflow-hidden">
+        
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+            <h2 id="master-bg-text" class="text-[45vw] font-black uppercase text-slate-100 opacity-60">
+                SPORT
+            </h2>
+        </div>
+    
+        <div class="sticky-wrapper h-screen w-full flex items-center justify-center">
+            <div class="container mx-auto px-6 relative z-10 w-full">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-32">
+                    
+                    <div class="w-full lg:w-1/2 text-left z-30">
+                        <div id="m-tag" class="flex items-center gap-6 mb-12 opacity-0 -translate-x-20">
+                            <span class="w-24 h-[3px] bg-blue-600"></span>
+                            <span class="text-[14px] font-bold tracking-[0.8em] uppercase text-blue-600">The Essence of Sport</span>
+                        </div>
+                        
+                        <h2 id="m-heading" class="text-6xl md:text-8xl lg:text-[100px] font-bold tracking-tighter leading-[0.85] text-slate-950 mb-14 opacity-0">
+                            Commanding <br> <span class="italic font-light text-slate-400">Presence.</span>
+                        </h2>
+    
+                        <div class="overflow-hidden mb-16">
+                            <p id="m-para" class="max-w-2xl text-slate-500 text-xl md:text-3xl font-light leading-snug translate-y-full">
+                                The Range Rover Sport blends athletic performance with refined craftsmanship. Built on an advanced MLA-Flex aluminum architecture.
+                            </p>
+                        </div>
+    
+                        <div id="m-features" class="grid grid-cols-1 md:grid-cols-2 gap-12 opacity-0 translate-y-20">
+                            <div class="border-t border-slate-100 pt-8">
+                                <h4 class="text-[10px] font-bold uppercase tracking-[0.4em] text-blue-500 mb-4">Architecture</h4>
+                                <p class="text-3xl font-bold text-slate-900 leading-none">35% Stiffer Body</p>
+                            </div>
+                            <div class="border-t border-slate-100 pt-8">
+                                <h4 class="text-[10px] font-bold uppercase tracking-[0.4em] text-blue-500 mb-4">Aerodynamics</h4>
+                                <p class="text-3xl font-bold text-slate-900 leading-none">Drag 0.29 Cd</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="w-full lg:w-1/2 relative flex justify-center items-center">
+                        <div id="m-frame" class="relative w-full aspect-[4/5] md:aspect-square lg:aspect-[3/4] rounded-[4rem] md:rounded-[7rem] overflow-hidden shadow-[0_120px_180px_-60px_rgba(0,0,0,0.2)] z-20">
+                            <img src="./intddorior.avif" 
+                                 class="w-full h-full object-cover scale-150" id="m-img" alt="Range Rover Sport">
+                            
+                            <div id="m-label" class="absolute top-10 right-10 bg-white/40 backdrop-blur-3xl p-8 rounded-[3rem] border border-white/50 shadow-2xl opacity-0 scale-0">
+                                <p class="text-[9px] font-bold text-blue-600 uppercase tracking-widest mb-1">Dynamics</p>
+                                <p class="text-xl font-bold text-slate-900">MLA-Flex Chassis</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="h-screen bg-slate-50 flex items-center justify-center">
+        <p class="text-slate-300 uppercase tracking-widest">End of Experience</p>
+    </section>
+    
+    <style>
+        /* ডুপ্লিকেট সমস্যা দূর করতে */
+        #luxury-overview-master {
+            position: relative;
+            z-index: 10;
+        }
+    
+        #m-frame {
+            clip-path: inset(0 0 100% 0); /* পর্দার মতো রিভিল */
+            will-change: clip-path;
+        }
+    
+        /* মোবাইল ফিক্স */
+        @media (max-width: 1024px) {
+            #m-heading { font-size: 3.5rem; line-height: 1; }
+            .sticky-wrapper { height: auto; min-height: 100vh; padding: 100px 0; }
+        }
+    </style>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.registerPlugin(ScrollTrigger);
+    
+            const section = document.querySelector("#luxury-overview-master");
+            const stickyContent = document.querySelector(".sticky-wrapper");
+    
+            // মেইন অ্যানিমেশন টাইমলাইন
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top top",
+                    end: "+=200%", // সেকশনটি স্ক্রিনে কতক্ষণ ধরে থাকবে
+                    scrub: 1.2,
+                    pin: true, // সেকশনটিকে আটকে রাখবে
+                    pinSpacing: true, // স্ক্রলিং শেষ হলে নিচের কন্টেন্টকে জায়গা দিবে
+                    anticipatePin: 1,
+                    invalidateOnRefresh: true, // উইন্ডো রিসাইজ করলে ফিক্স করবে
+                }
+            });
+    
+            tl.to("#master-bg-text", { xPercent: -20, opacity: 0.1, duration: 2 })
+              .to("#m-tag", { opacity: 1, x: 0, duration: 1.5 }, "-=2")
+              .to("#m-heading", { opacity: 1, y: -20, duration: 2 }, "-=1.5")
+              
+              .to("#m-frame", { clipPath: "inset(0% 0% 0% 0%)", duration: 3, ease: "power4.inOut" }, "-=2.5")
+              .to("#m-img", { scale: 1, duration: 3, ease: "power2.out" }, "-=3")
+              
+              .to("#m-para", { y: 0, duration: 1.5, ease: "power4.out" }, "-=1.5")
+              .to("#m-features", { opacity: 1, y: 0, duration: 1.5 }, "-=1")
+              .to("#m-label", { opacity: 1, scale: 1, duration: 1.5, ease: "back.out(1.7)" }, "-=1");
+    
+            // মাউস প্যারালাক্স (এটি ঐচ্ছিক, চাইলে রাখতে পারেন)
+            window.addEventListener("mousemove", (e) => {
+                const x = (e.clientX / window.innerWidth - 0.5) * 40;
+                const y = (e.clientY / window.innerHeight - 0.5) * 40;
+                gsap.to("#m-frame", { rotateY: x / 2, rotateX: -y / 2, duration: 1.5 });
+                gsap.to("#m-label", { x: x, y: y, duration: 2 });
+            });
+        });
+    </script>
 
     
 
