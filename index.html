@@ -8,6 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Plus+Jakarta+Sans:wght@200;300;400;700&display=swap" rel="stylesheet">
 
@@ -49,6 +51,17 @@
         /* Shutter Effects */
         #m-frame { clip-path: inset(0 0 100% 0); will-change: clip-path; }
         #cryo-frame-mask { clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%); }
+
+        /* 3rd section animation*/
+
+         /* Styling for High-End Readability */
+         #ai-main-title { clip-path: inset(0 0 100% 0); }
+        
+        /* Mobile Spacing Fix */
+        @media (max-width: 768px) {
+            #ai-main-title { font-size: 3.2rem; line-height: 1; }
+            #ai-marquee-bg { font-size: 40vw; }
+        }
     </style>
 </head>
 <body>
@@ -153,31 +166,86 @@
         </div>
     </section>
 
-    <section id="cryo-v2-container" class="relative min-h-[220vh] bg-[#fcfdfe] overflow-hidden py-32">
-        <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-            <h2 id="cryo-bg-text" class="text-[38vw] font-black text-blue-100/30 uppercase tracking-tighter italic">V8</h2>
+   
+    
+    <section id="ai-master-arctic" class="relative bg-white py-32 md:py-60 overflow-hidden">
+        
+        <div class="absolute top-1/2 left-0 w-full whitespace-nowrap opacity-[0.04] pointer-events-none select-none z-0">
+            <h2 id="ai-marquee-bg" class="text-[25vw] font-black uppercase tracking-tighter text-slate-900">
+                NEURAL DATA • PREDICTIVE • ADAPTIVE • EVOLVING • 
+            </h2>
         </div>
-        <div class="sticky-portal h-screen w-full flex items-center justify-center sticky top-0 overflow-hidden">
-            <div class="container mx-auto px-6 relative z-20">
-                <div class="flex flex-col lg:flex-row items-center gap-16 xl:gap-24">
-                    <div class="w-full lg:w-[55%] relative flex justify-center">
-                        <div id="cryo-frame-mask" class="relative w-full aspect-[16/10] overflow-hidden rounded-[3rem] shadow-2xl">
-                            <img id="cryo-main-img" src="./intddorior.avif" class="w-full h-full object-cover scale-150" alt="Tech">
-                        </div>
+    
+        <div class="container mx-auto px-6 relative z-10">
+            
+            <div class="flex flex-col lg:flex-row items-end justify-between gap-12 mb-32 md:mb-48">
+                <div class="max-w-5xl">
+                    <div id="ai-badge-fixed" class="inline-flex items-center gap-4 mb-8 opacity-0">
+                        <span class="w-12 h-[2px] bg-blue-600"></span>
+                        <span class="text-[11px] font-bold tracking-[0.6em] uppercase text-blue-600">AI Intelligence Core</span>
                     </div>
-                    <div class="w-full lg:w-[45%] text-left">
-                        <span id="cryo-tag-line" class="block text-[11px] font-bold tracking-[0.8em] uppercase text-blue-600 mb-6 opacity-0 translate-y-4">Adaptive Intelligence</span>
-                        <h2 id="cryo-headline" class="text-5xl md:text-7xl lg:text-[100px] font-bold tracking-tighter leading-[0.85] text-slate-900 mb-10 opacity-0">Cryo Control</h2>
-                        <p id="cryo-description" class="max-w-xl text-slate-600 text-lg md:text-xl font-light mb-12 opacity-0">Liquid-cooled dynamics ensure peak performance in extreme conditions.</p>
-                        <div id="cryo-stats-stack" class="grid grid-cols-2 gap-6 opacity-0">
-                            <div class="p-6 rounded-3xl bg-blue-50/50 border border-blue-100/50"><p class="text-4xl font-bold">3.8<span class="text-sm">sec</span></p></div>
-                        </div>
-                    </div>
+                    <h2 id="ai-main-title" class="text-6xl md:text-8xl lg:text-[110px] font-bold tracking-tighter leading-[0.85] text-slate-950">
+                        A Vehicle <br> <span class="italic font-light text-blue-600/70">That Thinks.</span>
+                    </h2>
+                </div>
+                <div class="max-w-md lg:pb-10">
+                    <p id="ai-main-desc" class="text-slate-500 text-lg md:text-2xl font-light leading-relaxed opacity-0 translate-y-10">
+                        Range Rover Sport 2024 uses deep-learning neural networks to adapt every system to your driving DNA in real-time.
+                    </p>
+                </div>
+            </div>
+    
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <div class="ai-logic-node group relative p-10 rounded-[3rem] bg-slate-50 border border-slate-100 hover:bg-white transition-all duration-700 opacity-0 translate-y-20">
+                    <div class="absolute top-8 right-8 text-[10px] font-bold text-blue-200 group-hover:text-blue-600 transition-colors">v.01</div>
+                    <h4 class="text-xl font-bold mb-4">Terrain Response 2</h4>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">Automatically selects optimal driving settings based on surface analysis via 360° sensors.</p>
+                    <div class="mt-8 h-1 w-0 bg-blue-600 group-hover:w-full transition-all duration-700"></div>
+                </div>
+    
+                <div class="ai-logic-node group relative p-10 rounded-[3rem] bg-slate-50 border border-slate-100 hover:bg-white transition-all duration-700 opacity-0 translate-y-20">
+                    <div class="absolute top-8 right-8 text-[10px] font-bold text-blue-200 group-hover:text-blue-600 transition-colors">v.02</div>
+                    <h4 class="text-xl font-bold mb-4">Predictive Air</h4>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">Prepares the suspension architecture in real-time using forward-facing cameras and data.</p>
+                    <div class="mt-8 h-1 w-0 bg-blue-600 group-hover:w-full transition-all duration-700"></div>
+                </div>
+    
+                <div class="ai-logic-node relative p-10 rounded-[3rem] bg-blue-600 shadow-2xl shadow-blue-200 opacity-0 translate-y-20">
+                    <div class="absolute top-8 right-8 text-[10px] font-bold text-white/40">v.03</div>
+                    <h4 class="text-xl font-bold mb-4 text-white">Intelligent IDD</h4>
+                    <p class="text-sm text-white/70 font-light leading-relaxed">Optimizes torque vectoring and cornering stability via AI-driven driveline dynamics.</p>
+                    <div class="mt-8 h-1 w-full bg-white/30"></div>
+                </div>
+    
+                <div class="ai-logic-node group relative p-10 rounded-[3rem] bg-slate-50 border border-slate-100 hover:bg-white transition-all duration-700 opacity-0 translate-y-20">
+                    <div class="absolute top-8 right-8 text-[10px] font-bold text-blue-200 group-hover:text-blue-600 transition-colors">v.04</div>
+                    <h4 class="text-xl font-bold mb-4">SOTA Evolution</h4>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">Software-Over-The-Air updates ensure your vehicle evolves with every drive you take.</p>
+                    <div class="mt-8 h-1 w-0 bg-blue-600 group-hover:w-full transition-all duration-700"></div>
+                </div>
+            </div>
+    
+            <div id="ai-hud" class="mt-32 pt-20 border-t border-slate-100 flex flex-wrap gap-12 md:gap-24 opacity-0">
+                <div class="hud-item">
+                    <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-slate-400 mb-2">Neural Processing</p>
+                    <p class="text-4xl md:text-5xl font-bold">500 <span class="text-sm font-light text-blue-600">TFLOPS</span></p>
+                </div>
+                <div class="hud-item">
+                    <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-slate-400 mb-2">Learning latency</p>
+                    <p class="text-4xl md:text-5xl font-bold">0.01 <span class="text-sm font-light text-blue-600">ms</span></p>
+                </div>
+                <div class="hud-item">
+                    <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-slate-400 mb-2">Sensor Array</p>
+                    <p class="text-4xl md:text-5xl font-bold">360<span class="text-sm font-light text-blue-600">° HUD</span></p>
                 </div>
             </div>
         </div>
     </section>
+    
+   
+   
 
+    
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
@@ -248,6 +316,55 @@
                     gsap.to(m, { x: x * 0.4, y: y * 0.4, duration: 0.3 });
                 });
                 m.addEventListener('mouseleave', () => gsap.to(m, { x: 0, y: 0, duration: 0.8 }));
+            });
+        });
+        // 3rd section animation
+
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.registerPlugin(ScrollTrigger);
+    
+            const aiTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#ai-master-arctic",
+                    start: "top 60%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+    
+            // 1. Header Reveal
+            aiTl.to("#ai-badge-fixed", { opacity: 1, duration: 1 })
+                .to("#ai-main-title", { clipPath: "inset(0% 0% 0% 0%)", y: -10, duration: 1.5, ease: "expo.out" }, "-=0.8")
+                .to("#ai-main-desc", { opacity: 1, y: 0, duration: 1 }, "-=1")
+                
+                // 2. Logic Nodes Stagger
+                .to(".ai-logic-node", { opacity: 1, y: 0, stagger: 0.15, duration: 1.2, ease: "power4.out" }, "-=0.8")
+                
+                // 3. HUD Stats Reveal
+                .to("#ai-hud", { opacity: 1, duration: 1.5 }, "-=0.5");
+    
+            // 4. Parallax Background Text
+            gsap.to("#ai-marquee-bg", {
+                xPercent: -30,
+                scrollTrigger: {
+                    trigger: "#ai-master-arctic",
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 2
+                }
+            });
+    
+            // 5. Magnetic Node Interaction
+            const nodes = document.querySelectorAll('.ai-logic-node');
+            nodes.forEach(node => {
+                node.addEventListener('mousemove', (e) => {
+                    const rect = node.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width/2;
+                    const y = e.clientY - rect.top - rect.height/2;
+                    gsap.to(node, { x: x * 0.3, y: y * 0.3, duration: 0.4 });
+                });
+                node.addEventListener('mouseleave', () => {
+                    gsap.to(node, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1,0.3)" });
+                });
             });
         });
     </script>
