@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Range Rover Sport | Next-Gen Luxury</title>
+    <title>Range Rover Sport | Platinum Edition</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -12,21 +12,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Plus+Jakarta+Sans:wght@200;300;400;700&display=swap" rel="stylesheet">
 
     <style>
+        :root { --blue-accent: #3b82f6; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: #ffffff; color: #000; overflow-x: hidden; }
         .font-tech { font-family: 'Syncopate', sans-serif; }
 
-        /* Advanced Masking */
-        .car-mask { clip-path: inset(0 0 0 100%); }
-
-        /* Floating Nav Styling */
+        /* Navbar Glassmorphism */
         .nav-pill {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(25px) saturate(200%);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
             border: 1px solid rgba(0, 0, 0, 0.05);
             transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        /* Glass Feature Card */
+        /* Hero Car Mask */
+        .car-mask { clip-path: inset(0 0 0 100%); }
+
+        /* Feature Cards */
         .feature-card {
             background: #ffffff;
             border: 1px solid rgba(0, 0, 0, 0.03);
@@ -35,14 +36,19 @@
         .feature-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 40px 80px rgba(0, 0, 0, 0.05);
-            border-color: #3b82f6;
+            border-color: var(--blue-accent);
         }
 
-        /* Kinetic Text */
-        .kinetic-text {
-            display: inline-block;
-            transition: transform 0.1s linear;
+        /* Responsive Fixes */
+        @media (max-width: 1024px) {
+            .h-screen { height: auto !important; min-height: 100vh; }
+            .sticky-wrapper, .sticky-portal { position: relative !important; height: auto !important; }
+            #m-heading, #cryo-headline { font-size: 3rem !important; }
         }
+
+        /* Shutter Effects */
+        #m-frame { clip-path: inset(0 0 100% 0); will-change: clip-path; }
+        #cryo-frame-mask { clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%); }
     </style>
 </head>
 <body>
@@ -53,55 +59,36 @@
                 <div class="w-8 h-8 bg-black rounded-lg flex items-center justify-center text-white text-[10px] font-bold">RR</div>
                 <span class="font-tech text-[10px] tracking-[0.4em] hidden md:block">RANGE ROVER</span>
             </div>
-
             <div class="hidden lg:flex gap-10 text-[9px] font-bold uppercase tracking-[0.3em] text-gray-400">
                 <a href="#" class="hover:text-black transition-colors">Electric</a>
                 <a href="#" class="hover:text-black transition-colors">Dynamics</a>
                 <a href="#" class="hover:text-black transition-colors">Interiors</a>
             </div>
-
             <div class="flex items-center gap-6">
-                <button class="text-[9px] font-bold uppercase tracking-widest hidden sm:block hover:text-blue-600 transition-colors">Find a Retailer</button>
-                <button class="bg-black text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform active:scale-95 shadow-xl shadow-black/10">Configure</button>
+                <button class="bg-black text-white px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform">Configure</button>
             </div>
         </nav>
     </header>
 
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        
         <div id="kinetic-wrap" class="absolute w-full flex justify-between px-10 pointer-events-none opacity-[0.03] font-tech text-[20vw] font-bold">
-            <span class="kinetic-text">S</span>
-            <span class="kinetic-text">P</span>
-            <span class="kinetic-text">O</span>
-            <span class="kinetic-text">R</span>
-            <span class="kinetic-text">T</span>
+            <span class="kinetic-text">S</span><span class="kinetic-text">P</span><span class="kinetic-text">O</span><span class="kinetic-text">R</span><span class="kinetic-text">T</span>
         </div>
-
         <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-10 items-center">
-            
             <div class="text-left order-2 lg:order-1">
                 <div id="reveal-sub" class="overflow-hidden mb-4">
                     <p class="text-[11px] font-bold text-blue-600 uppercase tracking-[0.6em] translate-y-full">Visceral performance. Modern luxury.</p>
                 </div>
-                
-                <h1 id="reveal-title" class="text-6xl md:text-8xl font-bold leading-[0.9] tracking-tighter mb-8 opacity-0">
-                    Range Rover <br> <span class="font-light italic text-gray-300">Sport 2024</span>
-                </h1>
-
-                <p id="reveal-desc" class="max-w-md text-gray-500 font-light leading-relaxed mb-10 opacity-0">
-                    The Range Rover Sport 2024 delivers dynamic road performance, cutting-edge AI technology, and unmistakable Range Rover design—engineered for drivers who demand power without compromise.
-                </p>
-
+                <h1 id="reveal-title" class="text-6xl md:text-8xl font-bold leading-[0.9] tracking-tighter mb-8 opacity-0">Range Rover <br> <span class="font-light italic text-gray-300">Sport 2024</span></h1>
+                <p id="reveal-desc" class="max-w-md text-gray-500 font-light leading-relaxed mb-10 opacity-0">The Range Rover Sport 2024 delivers dynamic road performance, cutting-edge AI technology, and unmistakable design.</p>
                 <div id="reveal-btns" class="flex flex-wrap gap-6 opacity-0 translate-y-10">
-                    <button class="btn-magnetic bg-black text-white px-10 py-5 rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:shadow-2xl shadow-black/20 transition-all">Explore the Vehicle</button>
-                    <button class="btn-magnetic border border-gray-200 px-10 py-5 rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:bg-gray-50 transition-all">Book Test Drive</button>
+                    <button class="btn-magnetic bg-black text-white px-10 py-5 rounded-2xl text-[10px] font-bold uppercase tracking-widest transition-all">Explore Vehicle</button>
+                    <button class="btn-magnetic border border-gray-200 px-10 py-5 rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:bg-gray-50 transition-all">Test Drive</button>
                 </div>
             </div>
-
             <div class="relative order-1 lg:order-2 flex items-center justify-center">
-                <div id="car-mask-box" class="car-mask relative w-full transition-transform duration-1000">
-                    <img id="hero-car" src="./range rover.png" alt="Range Rover Sport" class="w-full h-auto drop-shadow-[0_60px_100px_rgba(0,0,0,0.1)]">
-                    
+                <div id="car-mask-box" class="car-mask relative w-full transition-transform">
+                    <img id="hero-car" src="./range rover.png" alt="Range Rover Sport" class="w-full h-auto drop-shadow-2xl">
                     <div id="stats-pill" class="absolute -bottom-5 left-10 bg-white shadow-2xl rounded-3xl p-6 border border-gray-100 opacity-0 translate-y-10">
                         <div class="text-[8px] font-bold text-blue-600 uppercase tracking-widest mb-1">Top Speed</div>
                         <div class="text-2xl font-bold font-tech">250 <span class="text-xs">km/h</span></div>
@@ -118,217 +105,151 @@
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-width="2"></path></svg>
                 </div>
                 <h4 class="font-bold text-lg mb-3">AI Intelligence</h4>
-                <p class="text-xs text-gray-500 leading-relaxed font-light">Self-learning terrain response system that adapts to your environment in real-time.</p>
+                <p class="text-xs text-gray-500 leading-relaxed font-light">Self-learning terrain response system adapts in real-time.</p>
             </div>
-            
             <div class="feature-card p-10 rounded-[3rem]">
                 <div class="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-6">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" stroke-width="2"></path></svg>
                 </div>
                 <h4 class="font-bold text-lg mb-3">Silent Power</h4>
-                <p class="text-xs text-gray-500 leading-relaxed font-light">Whisper-quiet electric drive combined with high-performance V8 heritage.</p>
+                <p class="text-xs text-gray-500 leading-relaxed font-light">Whisper-quiet electric drive with high-performance V8 heritage.</p>
             </div>
-
             <div class="feature-card p-10 rounded-[3rem]">
                 <div class="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600 mb-6">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-7.714 2.143L11 21l-2.286-6.857L1 12l7.714-2.143L11 3z" stroke-width="2"></path></svg>
                 </div>
                 <h4 class="font-bold text-lg mb-3">Bespoke Suite</h4>
-                <p class="text-xs text-gray-500 leading-relaxed font-light">Curated materials and artisanal craft for a cockpit uniquely yours.</p>
+                <p class="text-xs text-gray-500 leading-relaxed font-light">Curated materials and artisanal craft cockpit.</p>
             </div>
         </div>
     </section>
 
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
     <section id="luxury-overview-master" class="relative bg-white overflow-hidden">
-        
         <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-            <h2 id="master-bg-text" class="text-[45vw] font-black uppercase text-slate-100 opacity-60">
-                SPORT
-            </h2>
+            <h2 id="master-bg-text" class="text-[45vw] font-black uppercase text-slate-100 opacity-60">SPORT</h2>
         </div>
-    
         <div class="sticky-wrapper h-screen w-full flex items-center justify-center">
             <div class="container mx-auto px-6 relative z-10 w-full">
                 <div class="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-32">
-                    
                     <div class="w-full lg:w-1/2 text-left z-30">
                         <div id="m-tag" class="flex items-center gap-6 mb-12 opacity-0 -translate-x-20">
                             <span class="w-24 h-[3px] bg-blue-600"></span>
-                            <span class="text-[14px] font-bold tracking-[0.8em] uppercase text-blue-600">The Essence of Sport</span>
+                            <span class="text-[14px] font-bold tracking-[0.8em] uppercase text-blue-600 text-blue-600">Essence of Sport</span>
                         </div>
-                        
-                        <h2 id="m-heading" class="text-6xl md:text-8xl lg:text-[100px] font-bold tracking-tighter leading-[0.85] text-slate-950 mb-14 opacity-0">
-                            Commanding <br> <span class="italic font-light text-slate-400">Presence.</span>
-                        </h2>
-    
-                        <div class="overflow-hidden mb-16">
-                            <p id="m-para" class="max-w-2xl text-slate-500 text-xl md:text-3xl font-light leading-snug translate-y-full">
-                                The Range Rover Sport blends athletic performance with refined craftsmanship. Built on an advanced MLA-Flex aluminum architecture.
-                            </p>
-                        </div>
-    
+                        <h2 id="m-heading" class="text-6xl md:text-8xl lg:text-[100px] font-bold tracking-tighter leading-[0.85] text-slate-950 mb-14 opacity-0">Commanding <br> Presence.</h2>
+                        <div class="overflow-hidden mb-16"><p id="m-para" class="max-w-2xl text-slate-500 text-xl md:text-3xl font-light leading-snug translate-y-full">Refined craftsmanship on advanced MLA-Flex aluminum architecture.</p></div>
                         <div id="m-features" class="grid grid-cols-1 md:grid-cols-2 gap-12 opacity-0 translate-y-20">
-                            <div class="border-t border-slate-100 pt-8">
-                                <h4 class="text-[10px] font-bold uppercase tracking-[0.4em] text-blue-500 mb-4">Architecture</h4>
-                                <p class="text-3xl font-bold text-slate-900 leading-none">35% Stiffer Body</p>
-                            </div>
-                            <div class="border-t border-slate-100 pt-8">
-                                <h4 class="text-[10px] font-bold uppercase tracking-[0.4em] text-blue-500 mb-4">Aerodynamics</h4>
-                                <p class="text-3xl font-bold text-slate-900 leading-none">Drag 0.29 Cd</p>
-                            </div>
+                            <div class="border-t border-slate-100 pt-8"><p class="text-3xl font-bold text-slate-900">35% Stiffer Body</p></div>
+                            <div class="border-t border-slate-100 pt-8"><p class="text-3xl font-bold text-slate-900">Drag 0.29 Cd</p></div>
                         </div>
                     </div>
-    
                     <div class="w-full lg:w-1/2 relative flex justify-center items-center">
-                        <div id="m-frame" class="relative w-full aspect-[4/5] md:aspect-square lg:aspect-[3/4] rounded-[4rem] md:rounded-[7rem] overflow-hidden shadow-[0_120px_180px_-60px_rgba(0,0,0,0.2)] z-20">
-                            <img src="./intddorior.avif" 
-                                 class="w-full h-full object-cover scale-150" id="m-img" alt="Range Rover Sport">
-                            
-                            <div id="m-label" class="absolute top-10 right-10 bg-white/40 backdrop-blur-3xl p-8 rounded-[3rem] border border-white/50 shadow-2xl opacity-0 scale-0">
-                                <p class="text-[9px] font-bold text-blue-600 uppercase tracking-widest mb-1">Dynamics</p>
-                                <p class="text-xl font-bold text-slate-900">MLA-Flex Chassis</p>
-                            </div>
+                        <div id="m-frame" class="relative w-full aspect-[4/5] rounded-[4rem] overflow-hidden shadow-2xl z-20">
+                            <img src="./range rover.png" class="w-full h-full object-cover scale-150" id="m-img" alt="Range Rover">
                         </div>
                     </div>
-    
                 </div>
             </div>
         </div>
     </section>
-    
-    <section class="h-screen bg-slate-50 flex items-center justify-center">
-        <p class="text-slate-300 uppercase tracking-widest">End of Experience</p>
-    </section>
-    
-    <style>
-        /* ডুপ্লিকেট সমস্যা দূর করতে */
-        #luxury-overview-master {
-            position: relative;
-            z-index: 10;
-        }
-    
-        #m-frame {
-            clip-path: inset(0 0 100% 0); /* পর্দার মতো রিভিল */
-            will-change: clip-path;
-        }
-    
-        /* মোবাইল ফিক্স */
-        @media (max-width: 1024px) {
-            #m-heading { font-size: 3.5rem; line-height: 1; }
-            .sticky-wrapper { height: auto; min-height: 100vh; padding: 100px 0; }
-        }
-    </style>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            gsap.registerPlugin(ScrollTrigger);
-    
-            const section = document.querySelector("#luxury-overview-master");
-            const stickyContent = document.querySelector(".sticky-wrapper");
-    
-            // মেইন অ্যানিমেশন টাইমলাইন
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: section,
-                    start: "top top",
-                    end: "+=200%", // সেকশনটি স্ক্রিনে কতক্ষণ ধরে থাকবে
-                    scrub: 1.2,
-                    pin: true, // সেকশনটিকে আটকে রাখবে
-                    pinSpacing: true, // স্ক্রলিং শেষ হলে নিচের কন্টেন্টকে জায়গা দিবে
-                    anticipatePin: 1,
-                    invalidateOnRefresh: true, // উইন্ডো রিসাইজ করলে ফিক্স করবে
-                }
-            });
-    
-            tl.to("#master-bg-text", { xPercent: -20, opacity: 0.1, duration: 2 })
-              .to("#m-tag", { opacity: 1, x: 0, duration: 1.5 }, "-=2")
-              .to("#m-heading", { opacity: 1, y: -20, duration: 2 }, "-=1.5")
-              
-              .to("#m-frame", { clipPath: "inset(0% 0% 0% 0%)", duration: 3, ease: "power4.inOut" }, "-=2.5")
-              .to("#m-img", { scale: 1, duration: 3, ease: "power2.out" }, "-=3")
-              
-              .to("#m-para", { y: 0, duration: 1.5, ease: "power4.out" }, "-=1.5")
-              .to("#m-features", { opacity: 1, y: 0, duration: 1.5 }, "-=1")
-              .to("#m-label", { opacity: 1, scale: 1, duration: 1.5, ease: "back.out(1.7)" }, "-=1");
-    
-            // মাউস প্যারালাক্স (এটি ঐচ্ছিক, চাইলে রাখতে পারেন)
-            window.addEventListener("mousemove", (e) => {
-                const x = (e.clientX / window.innerWidth - 0.5) * 40;
-                const y = (e.clientY / window.innerHeight - 0.5) * 40;
-                gsap.to("#m-frame", { rotateY: x / 2, rotateX: -y / 2, duration: 1.5 });
-                gsap.to("#m-label", { x: x, y: y, duration: 2 });
-            });
-        });
-    </script>
 
-    
+    <section id="cryo-v2-container" class="relative min-h-[220vh] bg-[#fcfdfe] overflow-hidden py-32">
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+            <h2 id="cryo-bg-text" class="text-[38vw] font-black text-blue-100/30 uppercase tracking-tighter italic">V8</h2>
+        </div>
+        <div class="sticky-portal h-screen w-full flex items-center justify-center sticky top-0 overflow-hidden">
+            <div class="container mx-auto px-6 relative z-20">
+                <div class="flex flex-col lg:flex-row items-center gap-16 xl:gap-24">
+                    <div class="w-full lg:w-[55%] relative flex justify-center">
+                        <div id="cryo-frame-mask" class="relative w-full aspect-[16/10] overflow-hidden rounded-[3rem] shadow-2xl">
+                            <img id="cryo-main-img" src="./intddorior.avif" class="w-full h-full object-cover scale-150" alt="Tech">
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-[45%] text-left">
+                        <span id="cryo-tag-line" class="block text-[11px] font-bold tracking-[0.8em] uppercase text-blue-600 mb-6 opacity-0 translate-y-4">Adaptive Intelligence</span>
+                        <h2 id="cryo-headline" class="text-5xl md:text-7xl lg:text-[100px] font-bold tracking-tighter leading-[0.85] text-slate-900 mb-10 opacity-0">Cryo Control</h2>
+                        <p id="cryo-description" class="max-w-xl text-slate-600 text-lg md:text-xl font-light mb-12 opacity-0">Liquid-cooled dynamics ensure peak performance in extreme conditions.</p>
+                        <div id="cryo-stats-stack" class="grid grid-cols-2 gap-6 opacity-0">
+                            <div class="p-6 rounded-3xl bg-blue-50/50 border border-blue-100/50"><p class="text-4xl font-bold">3.8<span class="text-sm">sec</span></p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // 1. Entrance Sequence
-        const entryTl = gsap.timeline({ defaults: { ease: "expo.out" } });
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- 1. HERO ANIMATION ---
+            const heroTl = gsap.timeline({ defaults: { ease: "expo.out" }});
+            heroTl.to("#navbar", { width: "100%", opacity: 1, duration: 1.5, delay: 0.5 })
+                  .to("#reveal-sub p", { y: 0, duration: 1 }, "-=1")
+                  .to("#reveal-title", { opacity: 1, duration: 1.5 }, "-=0.8")
+                  .to("#car-mask-box", { clipPath: "inset(0 0 0 0%)", duration: 2, ease: "power4.inOut" }, "-=1.5")
+                  .to("#reveal-desc", { opacity: 1, duration: 1 }, "-=1")
+                  .to("#reveal-btns", { opacity: 1, y: 0, duration: 1 }, "-=0.8")
+                  .to("#stats-pill", { opacity: 1, y: 0, duration: 1 }, "-=0.5");
 
-        entryTl.to("#navbar", { width: "100%", opacity: 1, duration: 1.5, delay: 0.5 })
-               .to("#reveal-sub p", { y: 0, duration: 1 }, "-=1")
-               .to("#reveal-title", { opacity: 1, duration: 1.5 }, "-=0.8")
-               .to("#car-mask-box", { clipPath: "inset(0 0 0 0%)", duration: 2, ease: "power4.inOut" }, "-=1.5")
-               .to("#reveal-desc", { opacity: 1, duration: 1 }, "-=1")
-               .to("#reveal-btns", { opacity: 1, y: 0, duration: 1 }, "-=0.8")
-               .to("#stats-pill", { opacity: 1, y: 0, duration: 1, ease: "back.out(1.7)" }, "-=0.5");
-
-        // 2. Interactive Mouse Parallax
-        document.addEventListener('mousemove', (e) => {
-            const { clientX, clientY } = e;
-            const xVal = (clientX / window.innerWidth - 0.5) * 40;
-            const yVal = (clientY / window.innerHeight - 0.5) * 40;
-
-            gsap.to("#hero-car", { rotateY: xVal, rotateX: -yVal, x: xVal/2, y: yVal/2, duration: 1.5 });
-            gsap.to("#stats-pill", { x: -xVal, y: -yVal, duration: 2 });
-        });
-
-        // 3. Kinetic Text Scroll Effect
-        gsap.to(".kinetic-text", {
-            scrollTrigger: {
-                trigger: "body",
-                start: "top top",
-                end: "bottom bottom",
-                scrub: 2
-            },
-            x: (i) => (i - 2) * 200, // Moves letters outward as you scroll
-            opacity: 0.2
-        });
-
-        // 4. Smart Nav Interaction
-        ScrollTrigger.create({
-            start: "top -50",
-            onEnter: () => {
-                gsap.to("#navbar", { maxWidth: "800px", marginTop: "10px", padding: "12px 30px", duration: 0.8, ease: "elastic.out(1, 0.75)" });
-            },
-            onLeaveBack: () => {
-                gsap.to("#navbar", { maxWidth: "1200px", marginTop: "0px", padding: "16px 32px", duration: 0.8 });
-            }
-        });
-
-        // 5. Magnetic Buttons
-        const magnets = document.querySelectorAll('.btn-magnetic');
-        magnets.forEach(m => {
-            m.addEventListener('mousemove', (e) => {
-                const rect = m.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width/2;
-                const y = e.clientY - rect.top - rect.height/2;
-                gsap.to(m, { x: x * 0.4, y: y * 0.4, duration: 0.3 });
+            // --- 2. LUXURY OVERVIEW PINNED ---
+            const luxuryTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#luxury-overview-master",
+                    start: "top top",
+                    end: "+=200%",
+                    scrub: 1.2,
+                    pin: true,
+                    anticipatePin: 1,
+                    pinSpacing: true
+                }
             });
-            m.addEventListener('mouseleave', () => {
-                gsap.to(m, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1,0.3)" });
+            luxuryTl.to("#master-bg-text", { xPercent: -20, opacity: 0.1, duration: 2 })
+                    .to("#m-tag", { opacity: 1, x: 0, duration: 1.5 }, "-=2")
+                    .to("#m-heading", { opacity: 1, y: -20, duration: 2 }, "-=1.5")
+                    .to("#m-frame", { clipPath: "inset(0% 0% 0% 0%)", duration: 3, ease: "power4.inOut" }, "-=2.5")
+                    .to("#m-img", { scale: 1, duration: 3 }, "-=3")
+                    .to("#m-para", { y: 0, duration: 1.5 }, "-=1.5")
+                    .to("#m-features", { opacity: 1, y: 0, duration: 1.5 }, "-=1");
+
+            // --- 3. CRYO PERFORMANCE PINNED ---
+            const cryoTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#cryo-v2-container",
+                    start: "top top",
+                    end: "+=180%",
+                    scrub: 1.2,
+                    pin: true,
+                    anticipatePin: 1
+                }
+            });
+            cryoTl.to("#cryo-tag-line", { opacity: 1, y: 0, duration: 1 })
+                  .to("#cryo-bg-text", { xPercent: -20, opacity: 0.1, duration: 2.5 }, "-=1")
+                  .to("#cryo-frame-mask", { clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", duration: 2.5, ease: "power4.inOut" }, "-=1.5")
+                  .to("#cryo-main-img", { scale: 1, duration: 2.5 }, "-=2.5")
+                  .to("#cryo-headline", { opacity: 1, y: -20, duration: 1.5 }, "-=1.5")
+                  .to("#cryo-description", { opacity: 1, duration: 1.2 }, "-=1")
+                  .to("#cryo-stats-stack", { opacity: 1, duration: 1 }, "-=0.5");
+
+            // --- 4. GLOBAL INTERACTIONS ---
+            document.addEventListener('mousemove', (e) => {
+                const xVal = (e.clientX / window.innerWidth - 0.5) * 30;
+                const yVal = (e.clientY / window.innerHeight - 0.5) * 30;
+                gsap.to("#hero-car, #m-frame, #cryo-frame-mask", { rotateY: xVal/2, rotateX: -yVal/2, duration: 1.5 });
+            });
+
+            const magnets = document.querySelectorAll('.btn-magnetic');
+            magnets.forEach(m => {
+                m.addEventListener('mousemove', (e) => {
+                    const rect = m.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width/2;
+                    const y = e.clientY - rect.top - rect.height/2;
+                    gsap.to(m, { x: x * 0.4, y: y * 0.4, duration: 0.3 });
+                });
+                m.addEventListener('mouseleave', () => gsap.to(m, { x: 0, y: 0, duration: 0.8 }));
             });
         });
-
     </script>
 </body>
 </html>
